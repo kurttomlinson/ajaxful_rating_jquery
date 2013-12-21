@@ -56,6 +56,7 @@ module AjaxfulRating # :nodoc:
         end
 
         def ratings_tag
+          already_rated = rateable.rated_by?(user, options[:dimension]) if user
           stars = []
           width = (show_value / rateable.class.max_stars.to_f) * 100
           li_class = "axr-#{show_value}-#{rateable.class.max_stars}".gsub('.', '_')
@@ -65,7 +66,9 @@ module AjaxfulRating # :nodoc:
           @css_builder.rule('.ajaxful-rating.small',
           :width => (rateable.class.max_stars * 10)) if options[:size] == 'small'
 
-          stars << @template.content_tag(:li, i18n(:current), :class => "show-value",
+          stars_css_class = "show-value"
+          stars_css_class = "show-value rated" if already_rated
+          stars << @template.content_tag(:li, i18n(:current), :class => stars_css_class,
           :style => "width: #{width}%")
           stars += (1..rateable.class.max_stars).map do |i|
             star_tag(i)
