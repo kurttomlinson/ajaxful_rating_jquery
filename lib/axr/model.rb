@@ -69,7 +69,7 @@ module AjaxfulRating # :nodoc:
     #     @article.rate(params[:stars], current_user, params[:dimension])
     #     # some page update here ...
     #   end
-    def rate(stars, user, dimension = nil)
+    def rate(stars, user, dimension = nil, comments = nil)
       return false if (stars.to_i > self.class.max_stars)
       raise Errors::AlreadyRatedError if (!self.class.axr_config[:allow_update] && rated_by?(user, dimension))
 
@@ -80,6 +80,7 @@ module AjaxfulRating # :nodoc:
           r.rater = user
         end
       end
+      rate.comments = comments unless comments.nil?
       rate.stars = stars
       rate.save!
       self.update_cached_average(dimension)
