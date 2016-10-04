@@ -1,3 +1,6 @@
+== 3.1.0 October 10, 2016
+* Update "conditions" in has_many relations to "where" for Rails 4 compatibility
+
 == 3.0.0.beta2 August 8, 2010
 * Fix dom_class and tap methods in rails.rc
 

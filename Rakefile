@@ -6,7 +6,7 @@ begin
   
   Jeweler::Tasks.new do |spec|
     spec.name                   = "ajaxful_rating_jquery"
-    spec.version                = "3.0.1"
+    spec.version                = "3.1.0"
     spec.summary                = "Provides a simple way to add rating functionality to your application."
     spec.description            = "Provides a simple way to add rating functionality to your application."
     spec.homepage               = "http://github.com/kurttomlinson/ajaxful_rating_jquery"
